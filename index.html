@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="hy">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Շրջանառության հարկի օգնական</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="page">
+
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">%</div>
+
+                <div>
+                    <div class="logo-title">Tax Assistant</div>
+                    <div class="logo-subtitle">Հաշվապահական օգնական</div>
+                </div>
+            </div>
+
+            <div class="law-badge">
+                ՀՀ Հարկային օրենսգիրք · Հոդված 258
+            </div>
+        </header>
+
+
+        <main class="main">
+
+            <!-- LEFT SIDE -->
+
+            <section class="calculator-card">
+
+                <div class="section-heading">
+                    <span class="step-number">1</span>
+
+                    <div>
+                        <h1>Շրջանառության հարկի հաշվարկ</h1>
+                        <p>
+                            Մուտքագրեք տվյալները, իսկ համակարգը ավտոմատ
+                            կհաշվարկի հարկի գումարը։
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="activity">
+                        Գործունեության տեսակ
+                    </label>
+
+                    <select id="activity">
+
+                        <option value="trade">
+                            Առևտրական (առք ու վաճառքի) գործունեություն
+                        </option>
+
+                        <option value="secondary">
+                            Երկրորդային հումքի առևտուր
+                        </option>
+
+                        <option value="newspaper">
+                            Թերթերի օտարում
+                        </option>
+
+                        <option value="production">
+                            Արտադրական գործունեություն
+                        </option>
+
+                        <option value="rent">
+                            Վարձակալական վճար, տոկոս, ռոյալթի
+                        </option>
+
+                        <option value="food">
+                            Հանրային սննդի ոլորտ
+                        </option>
+
+                        <option value="food_other">
+                            Հանրային սննդի հայտարարություն ներկայացրած անձի այլ գործունեություն
+                        </option>
+
+                        <option value="hightech">
+                            Բարձր տեխնոլոգիաների ոլորտ
+                        </option>
+
+                        <option value="assets">
+                            Այլ ակտիվների օտարում
+                        </option>
+
+                        <option value="other">
+                            Այլ գործունեություն
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="income">
+                            Շրջանառություն / հարկման բազա
+                        </label>
+
+                        <div class="money-input">
+
+                            <input type="number" id="income" min="0" step="1000" placeholder="0">
+
+                            <span>֏</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group expense-field">
+
+                        <label for="expenses">
+                            Նվազեցվող ծախսեր
+                        </label>
+
+                        <div class="money-input">
+
+                            <input type="number" id="expenses" min="0" step="1000" placeholder="0">
+
+                            <span>֏</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group expense-field">
+
+                    <label for="previousExpenses">
+                        Նախորդ ժամանակաշրջանից փոխանցված չնվազեցված ծախսեր
+                    </label>
+
+                    <div class="money-input">
+
+                        <input type="number" id="previousExpenses" min="0" step="1000" placeholder="0">
+
+                        <span>֏</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-box" id="activityInfo">
+                </div>
+
+
+                <button id="calculateBtn" class="calculate-btn">
+                    Հաշվարկել հարկը
+                </button>
+
+            </section>
+
+
+            <!-- RIGHT SIDE -->
+
+            <section class="result-card">
+
+                <div class="result-header">
+
+                    <span class="step-number dark">2</span>
+
+                    <div>
+                        <h2>Հաշվարկի արդյունք</h2>
+                        <p>Արդյունքը ներկայացվում է դրամով</p>
+                    </div>
+
+                </div>
+
+
+                <div class="main-result">
+
+                    <span class="main-result-label">
+                        Վճարման ենթակա հարկ
+                    </span>
+
+                    <div class="main-result-value">
+                        <span id="finalTax">0</span>
+                        <small>֏</small>
+                    </div>
+
+                </div>
+
+
+                <div class="result-details">
+
+                    <div class="result-row">
+
+                        <span>Հիմնական դրույքաչափ</span>
+
+                        <strong id="baseRate">
+                            10%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-row">
+
+                        <span>Հաշվարկված հարկ</span>
+
+                        <strong id="initialTax">
+                            0 ֏
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-row expense-result">
+
+                        <span>Ընդհանուր նվազեցվող ծախսեր</span>
+
+                        <strong id="totalExpenses">
+                            0 ֏
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-row expense-result">
+
+                        <span>
+                            Ծախսերի գծով հաշվարկված նվազեցում
+                        </span>
+
+                        <strong id="expenseDeduction">
+                            0 ֏
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-row expense-result">
+
+                        <span>Նվազագույն հարկ</span>
+
+                        <strong id="minimumTax">
+                            0 ֏
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-row expense-result">
+
+                        <span>Օգտագործված ծախս</span>
+
+                        <strong id="usedExpenses">
+                            0 ֏
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-row expense-result">
+
+                        <span>
+                            Հաջորդ ժամանակաշրջան փոխանցվող ծախս
+                        </span>
+
+                        <strong id="carryForward">
+                            0 ֏
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="formula-box">
+
+                    <div class="formula-title">
+                        Ինչպե՞ս է կատարվել հաշվարկը
+                    </div>
+
+                    <div id="formulaText" class="formula-text">
+                        Մուտքագրեք տվյալները և սեղմեք «Հաշվարկել հարկը»։
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html> 
