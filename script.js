@@ -1,70 +1,80 @@
 const taxRules = {
 
     trade: {
-        name: "Առևտրական գործունեություն",
+        name:
+            "Առևտրական գործունեություն",
         rate: 10,
         expenseRate: 9.5,
         minimumRate: 1
     },
 
     secondary: {
-        name: "Երկրորդային հումքի առևտուր",
+        name:
+            "Երկրորդային հումքի առևտուր",
         rate: 5,
         expenseRate: null,
         minimumRate: null
     },
 
     newspaper: {
-        name: "Թերթերի օտարում",
+        name:
+            "Թերթերի օտարում",
         rate: 1.5,
         expenseRate: null,
         minimumRate: null
     },
 
     production: {
-        name: "Արտադրական գործունեություն",
+        name:
+            "Արտադրական գործունեություն",
         rate: 7,
         expenseRate: 5,
         minimumRate: 3
     },
 
     rent: {
-        name: "Վարձակալական վճար, տոկոս, ռոյալթի",
+        name:
+            "Վարձակալական վճար, տոկոս, ռոյալթի",
         rate: 10,
         expenseRate: null,
         minimumRate: null
     },
 
     food: {
-        name: "Հանրային սննդի ոլորտ",
+        name:
+            "Հանրային սննդի ոլորտ",
         rate: 12,
         expenseRate: 9,
         minimumRate: 3.5
     },
 
     food_other: {
-        name: "Հանրային սննդի հայտարարություն ներկայացրած անձի այլ գործունեություն",
+        name:
+            "Հանրային սննդի հայտարարություն ներկայացրած անձի այլ գործունեություն",
         rate: 20,
         expenseRate: null,
         minimumRate: null
     },
 
     hightech: {
-        name: "Բարձր տեխնոլոգիաների ոլորտ",
+        name:
+            "Բարձր տեխնոլոգիաների ոլորտ",
         rate: 1,
         expenseRate: null,
         minimumRate: null
     },
 
     assets: {
-        name: "Այլ ակտիվների օտարում",
+        name:
+            "Այլ ակտիվների օտարում",
         rate: 10,
         expenseRate: null,
         minimumRate: null
     },
 
     other: {
-        name: "Այլ գործունեություն",
+        name:
+            "Այլ գործունեություն",
         rate: 10,
         expenseRate: 6,
         minimumRate: 4.5
@@ -73,72 +83,122 @@ const taxRules = {
 };
 
 
-const activity = document.getElementById("activity");
 
-const income = document.getElementById("income");
+const activity =
+    document.getElementById(
+        "activity"
+    );
 
-const expenses = document.getElementById("expenses");
+const income =
+    document.getElementById(
+        "income"
+    );
+
+const expenses =
+    document.getElementById(
+        "expenses"
+    );
 
 const previousExpenses =
-    document.getElementById("previousExpenses");
+    document.getElementById(
+        "previousExpenses"
+    );
 
 const calculateBtn =
-    document.getElementById("calculateBtn");
+    document.getElementById(
+        "calculateBtn"
+    );
+
+const resultCard =
+    document.getElementById(
+        "resultCard"
+    );
+
 
 
 const finalTax =
-    document.getElementById("finalTax");
+    document.getElementById(
+        "finalTax"
+    );
 
 const baseRate =
-    document.getElementById("baseRate");
+    document.getElementById(
+        "baseRate"
+    );
 
 const initialTax =
-    document.getElementById("initialTax");
+    document.getElementById(
+        "initialTax"
+    );
 
 const totalExpenses =
-    document.getElementById("totalExpenses");
+    document.getElementById(
+        "totalExpenses"
+    );
 
 const expenseDeduction =
-    document.getElementById("expenseDeduction");
+    document.getElementById(
+        "expenseDeduction"
+    );
 
 const minimumTax =
-    document.getElementById("minimumTax");
+    document.getElementById(
+        "minimumTax"
+    );
 
 const usedExpenses =
-    document.getElementById("usedExpenses");
+    document.getElementById(
+        "usedExpenses"
+    );
 
 const carryForward =
-    document.getElementById("carryForward");
+    document.getElementById(
+        "carryForward"
+    );
 
 const formulaText =
-    document.getElementById("formulaText");
+    document.getElementById(
+        "formulaText"
+    );
 
 const activityInfo =
-    document.getElementById("activityInfo");
+    document.getElementById(
+        "activityInfo"
+    );
+
 
 
 function formatMoney(value) {
 
     return Math.round(value)
-        .toLocaleString("hy-AM");
+        .toLocaleString(
+            "hy-AM"
+        );
 
 }
 
 
+
 function getNumber(element) {
 
-    const value = Number(element.value);
+    const value =
+        Number(
+            element.value
+        );
 
     if (
         isNaN(value) ||
         value < 0
     ) {
+
         return 0;
+
     }
 
     return value;
 
 }
+
 
 
 function hasExpenseDeduction(rule) {
@@ -151,13 +211,13 @@ function hasExpenseDeduction(rule) {
 }
 
 
+
 function updateActivityInfo() {
 
     const rule =
-        taxRules[activity.value];
-
-    baseRate.textContent =
-        rule.rate + "%";
+        taxRules[
+        activity.value
+        ];
 
 
     const expenseFields =
@@ -171,44 +231,99 @@ function updateActivityInfo() {
         );
 
 
-    if (hasExpenseDeduction(rule)) {
+    if (
+        hasExpenseDeduction(rule)
+    ) {
 
         expenseFields.forEach(
-            el => el.classList.remove("hidden")
+            element => {
+
+                element
+                    .classList
+                    .remove(
+                        "hidden"
+                    );
+
+            }
         );
 
+
         expenseResults.forEach(
-            el => el.classList.remove("hidden")
+            element => {
+
+                element
+                    .classList
+                    .remove(
+                        "hidden"
+                    );
+
+            }
         );
 
 
         activityInfo.innerHTML = `
+
             Հիմնական դրույքաչափ՝
-            <strong>${rule.rate}%</strong>։
+            <strong>
+                ${rule.rate}%
+            </strong>։
+
             Ծախսերի նվազեցման դրույքաչափ՝
-            <strong>${rule.expenseRate}%</strong>։
+            <strong>
+                ${rule.expenseRate}%
+            </strong>։
+
             Վերջնական հարկը չի կարող լինել
             շրջանառության
-            <strong>${rule.minimumRate}%</strong>-ից պակաս։
+            <strong>
+                ${rule.minimumRate}%
+            </strong>-ից պակաս։
+
         `;
 
     } else {
 
         expenseFields.forEach(
-            el => el.classList.add("hidden")
+            element => {
+
+                element
+                    .classList
+                    .add(
+                        "hidden"
+                    );
+
+            }
         );
 
+
         expenseResults.forEach(
-            el => el.classList.add("hidden")
+            element => {
+
+                element
+                    .classList
+                    .add(
+                        "hidden"
+                    );
+
+            }
         );
 
 
         activityInfo.innerHTML = `
-            Այս գործունեության համար կիրառվում է
-            <strong>${rule.rate}%</strong>
+
+            Այս գործունեության համար
+            կիրառվում է
+
+            <strong>
+                ${rule.rate}%
+            </strong>
+
             շրջանառության հարկի դրույքաչափ։
-            Ծախսերի գծով նվազեցման մեխանիզմ
-            այս հաշվարկում չի կիրառվում։
+
+            Ծախսերի գծով նվազեցման
+            մեխանիզմ այս հաշվարկում
+            չի կիրառվում։
+
         `;
 
     }
@@ -216,86 +331,116 @@ function updateActivityInfo() {
 }
 
 
+
 function calculateTax() {
 
     const rule =
-        taxRules[activity.value];
+        taxRules[
+        activity.value
+        ];
 
     const revenue =
-        getNumber(income);
-
-    const currentExpenses =
-        getNumber(expenses);
-
-    const oldExpenses =
-        getNumber(previousExpenses);
-
-
-    if (revenue <= 0) {
-
-        alert(
-            "Խնդրում ենք մուտքագրել շրջանառության գումարը։"
+        getNumber(
+            income
         );
 
-        return;
+    const currentExpenses =
+        getNumber(
+            expenses
+        );
+
+    const oldExpenses =
+        getNumber(
+            previousExpenses
+        );
+
+
+    if (
+        revenue <= 0
+    ) {
+
+        return false;
 
     }
 
 
-    /*
-        ՀԻՄՆԱԿԱՆ ՀԱՐԿ
-    */
-
     const taxBeforeDeduction =
-        revenue * rule.rate / 100;
+        revenue *
+        rule.rate /
+        100;
 
 
     /*
-        ԵԹԵ ՉԿԱ ԾԱԽՍԵՐԻ ՆՎԱԶԵՑՈՒՄ
+        ԱՌԱՆՑ ԾԱԽՍԵՐԻ ՆՎԱԶԵՑՄԱՆ
     */
 
-    if (!hasExpenseDeduction(rule)) {
+    if (
+        !hasExpenseDeduction(rule)
+    ) {
 
         finalTax.textContent =
-            formatMoney(taxBeforeDeduction);
-
-        initialTax.textContent =
-            formatMoney(taxBeforeDeduction) + " ֏";
+            formatMoney(
+                taxBeforeDeduction
+            );
 
         baseRate.textContent =
             rule.rate + "%";
 
+        initialTax.textContent =
+            formatMoney(
+                taxBeforeDeduction
+            ) +
+            " ֏";
+
 
         formulaText.innerHTML = `
-            ${formatMoney(revenue)} ֏
-            × ${rule.rate}%
-            =
+
             <strong>
-                ${formatMoney(taxBeforeDeduction)} ֏
+                Հաշվարկ
             </strong>
+
+            <br><br>
+
+            ${formatMoney(revenue)} ֏
+            ×
+            ${rule.rate}%
+
+            =
+
+            <strong>
+                ${formatMoney(
+            taxBeforeDeduction
+        )} ֏
+            </strong>
+
         `;
 
-        return;
+
+        return true;
 
     }
 
 
+
     /*
-        ԸՆԴՀԱՆՈՒՐ ՆՎԱԶԵՑՎՈՂ ԾԱԽՍ
+        ԸՆԴՀԱՆՈՒՐ ԾԱԽՍ
     */
 
     const availableExpenses =
-        currentExpenses + oldExpenses;
+        currentExpenses +
+        oldExpenses;
+
 
 
     /*
-        ԾԱԽՍԵՐԻ ՀԻՄՆԱԿԱՆ ՆՎԱԶԵՑՈՒՄ
+        ՀՆԱՐԱՎՈՐ ՆՎԱԶԵՑՈՒՄ
     */
 
     const possibleDeduction =
         availableExpenses *
         rule.expenseRate /
         100;
+
 
 
     /*
@@ -308,24 +453,22 @@ function calculateTax() {
         100;
 
 
+
     /*
-        ՈՐՔԱՆ ԿԱՐՈՂ ԵՆՔ ԱՌԱՎԵԼԱԳՈՒՅՆԸ ՆՎԱԶԵՑՆԵԼ
-
-        Օրինակ՝
-
-        հիմնական հարկ = 1,000,000
-        նվազագույն հարկ = 100,000
-
-        առավելագույն նվազեցում =
-        900,000
+        ԱՌԱՎԵԼԱԳՈՒՅՆ
+        ԹՈՒՅԼԱՏՐԵԼԻ ՆՎԱԶԵՑՈՒՄ
     */
 
     const maximumAllowedDeduction =
         Math.max(
+
             0,
+
             taxBeforeDeduction -
             minimumTaxAmount
+
         );
+
 
 
     /*
@@ -334,9 +477,13 @@ function calculateTax() {
 
     const actualDeduction =
         Math.min(
+
             possibleDeduction,
+
             maximumAllowedDeduction
+
         );
+
 
 
     /*
@@ -345,51 +492,64 @@ function calculateTax() {
 
     const taxAfterDeduction =
         Math.max(
+
             minimumTaxAmount,
+
             taxBeforeDeduction -
             actualDeduction
+
         );
 
 
+
     /*
-        ՈՐՔԱՆ ԾԱԽՍ Է ԻՐԱԿԱՆՈՒՄ ՕԳՏԱԳՈՐԾՎԵԼ
-
-        Եթե նվազեցման դրույքաչափը 9.5% է,
-        իսկ օգտագործված նվազեցումը 950,000,
-        ապա օգտագործված ծախսը՝
-
-        950000 / 0.095
+        ՕԳՏԱԳՈՐԾՎԱԾ ԾԱԽՍ
     */
 
     let expensesActuallyUsed = 0;
 
-    if (rule.expenseRate > 0) {
+
+    if (
+        rule.expenseRate > 0
+    ) {
 
         expensesActuallyUsed =
+
             actualDeduction /
-            (rule.expenseRate / 100);
+
+            (
+                rule.expenseRate /
+                100
+            );
 
     }
 
 
     expensesActuallyUsed =
         Math.min(
+
             availableExpenses,
+
             expensesActuallyUsed
+
         );
 
 
+
     /*
-        ՀԱՋՈՐԴ ԺԱՄԱՆԱԿԱՇՐՋԱՆ
         ՓՈԽԱՆՑՎՈՂ ԾԱԽՍ
     */
 
     const remainingExpenses =
         Math.max(
+
             0,
+
             availableExpenses -
             expensesActuallyUsed
+
         );
+
 
 
     /*
@@ -399,15 +559,20 @@ function calculateTax() {
     baseRate.textContent =
         rule.rate + "%";
 
+
     initialTax.textContent =
         formatMoney(
             taxBeforeDeduction
-        ) + " ֏";
+        ) +
+        " ֏";
+
 
     totalExpenses.textContent =
         formatMoney(
             availableExpenses
-        ) + " ֏";
+        ) +
+        " ֏";
+
 
     expenseDeduction.textContent =
         "- " +
@@ -416,11 +581,13 @@ function calculateTax() {
         ) +
         " ֏";
 
+
     minimumTax.textContent =
         formatMoney(
             minimumTaxAmount
         ) +
         " ֏";
+
 
     usedExpenses.textContent =
         formatMoney(
@@ -428,16 +595,19 @@ function calculateTax() {
         ) +
         " ֏";
 
+
     carryForward.textContent =
         formatMoney(
             remainingExpenses
         ) +
         " ֏";
 
+
     finalTax.textContent =
         formatMoney(
             taxAfterDeduction
         );
+
 
 
     /*
@@ -446,47 +616,98 @@ function calculateTax() {
 
     let explanation = `
 
-        <strong>1․ Հիմնական հարկ</strong><br>
-
-        ${formatMoney(revenue)} ֏
-        × ${rule.rate}%
-        =
-        ${formatMoney(taxBeforeDeduction)} ֏
-
-        <br><br>
-
-
-        <strong>2․ Ծախսերով հնարավոր նվազեցում</strong><br>
-
-        ${formatMoney(availableExpenses)} ֏
-        × ${rule.expenseRate}%
-        =
-        ${formatMoney(possibleDeduction)} ֏
-
-        <br><br>
-
-
-        <strong>3․ Նվազագույն հարկ</strong><br>
-
-        ${formatMoney(revenue)} ֏
-        × ${rule.minimumRate}%
-        =
-        ${formatMoney(minimumTaxAmount)} ֏
-
-        <br><br>
-
-
-        <strong>4․ Վերջնական հաշվարկ</strong><br>
-
-        ${formatMoney(taxBeforeDeduction)} ֏
-        −
-        ${formatMoney(actualDeduction)} ֏
-        =
         <strong>
-            ${formatMoney(taxAfterDeduction)} ֏
+            1․ Հիմնական հարկ
+        </strong>
+
+        <br>
+
+        ${formatMoney(revenue)} ֏
+        ×
+        ${rule.rate}%
+
+        =
+
+        ${formatMoney(
+        taxBeforeDeduction
+    )} ֏
+
+
+        <br><br>
+
+
+        <strong>
+            2․ Ծախսերով հնարավոր նվազեցում
+        </strong>
+
+        <br>
+
+        ${formatMoney(
+        availableExpenses
+    )} ֏
+
+        ×
+
+        ${rule.expenseRate}%
+
+        =
+
+        ${formatMoney(
+        possibleDeduction
+    )} ֏
+
+
+        <br><br>
+
+
+        <strong>
+            3․ Նվազագույն հարկ
+        </strong>
+
+        <br>
+
+        ${formatMoney(revenue)} ֏
+
+        ×
+
+        ${rule.minimumRate}%
+
+        =
+
+        ${formatMoney(
+        minimumTaxAmount
+    )} ֏
+
+
+        <br><br>
+
+
+        <strong>
+            4․ Վերջնական հաշվարկ
+        </strong>
+
+        <br>
+
+        ${formatMoney(
+        taxBeforeDeduction
+    )} ֏
+
+        −
+
+        ${formatMoney(
+        actualDeduction
+    )} ֏
+
+        =
+
+        <strong>
+            ${formatMoney(
+        taxAfterDeduction
+    )} ֏
         </strong>
 
     `;
+
 
 
     if (
@@ -498,18 +719,24 @@ function calculateTax() {
 
             <br><br>
 
-            Ծախսերի ամբողջ նվազեցումը չի կիրառվել,
-            քանի որ հարկը չի կարող լինել
-            շրջանառության
+            Ծախսերի ամբողջ նվազեցումը
+            չի կիրառվել, քանի որ հարկը
+            չի կարող լինել շրջանառության
+
             <strong>
                 ${rule.minimumRate}%
-            </strong>-ից պակաս։
+            </strong>
 
-            <br>
+            -ից պակաս։
+
+            <br><br>
 
             Չօգտագործված ծախս՝
+
             <strong>
-                ${formatMoney(remainingExpenses)} ֏
+                ${formatMoney(
+            remainingExpenses
+        )} ֏
             </strong>։
 
         `;
@@ -520,8 +747,16 @@ function calculateTax() {
     formulaText.innerHTML =
         explanation;
 
+
+    return true;
+
 }
 
+
+
+/*
+    ACTIVITY CHANGE
+*/
 
 activity.addEventListener(
     "change",
@@ -529,44 +764,156 @@ activity.addEventListener(
 
         updateActivityInfo();
 
-        calculateTaxIfPossible();
+        /*
+            Եթե արդեն արդյունք է եղել,
+            թաքցնում ենք մինչև նորից
+            սեղմեն հաշվարկի կոճակը։
+        */
+
+        resultCard
+            .classList
+            .add(
+                "result-hidden"
+            );
 
     }
 );
 
 
-calculateBtn.addEventListener(
-    "click",
-    calculateTax
-);
-
 
 /*
-    ՑԱՆԿՈՒԹՅԱՆ ԴԵՊՔՈՒՄ
-    ՀԱՇՎԱՐԿԸ ԱՆՄԻՋԱՊԵՍ ԹԱՐՄԱՑՆՈՒՄ ԵՆՔ
+    INPUT ՓՈՓՈԽԵԼԻՍ
+    ԱՐԴՅՈՒՆՔԸ ԹԱՔՑՆՈՒՄ ԵՆՔ
 */
 
 [
     income,
     expenses,
     previousExpenses
-].forEach(input => {
 
-    input.addEventListener(
-        "input",
-        calculateTaxIfPossible
-    );
+].forEach(
+    input => {
 
-});
+        input.addEventListener(
+            "input",
+            () => {
 
+                resultCard
+                    .classList
+                    .add(
+                        "result-hidden"
+                    );
 
-function calculateTaxIfPossible() {
+            }
+        );
 
-    if (getNumber(income) > 0) {
-        calculateTax();
     }
+);
 
-}
+
+
+/*
+    CALCULATE BUTTON
+*/
+
+calculateBtn.addEventListener(
+    "click",
+    () => {
+
+        const revenue =
+            getNumber(
+                income
+            );
+
+
+        if (
+            revenue <= 0
+        ) {
+
+            alert(
+                "Խնդրում ենք մուտքագրել շրջանառության գումարը։"
+            );
+
+            income.focus();
+
+            return;
+
+        }
+
+
+        const calculated =
+            calculateTax();
+
+
+        if (
+            !calculated
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+            ՑՈՒՅՑ ՏԱԼ ԱՐԴՅՈՒՆՔԸ
+        */
+
+        resultCard
+            .classList
+            .remove(
+                "result-hidden"
+            );
+
+
+        resultCard
+            .classList
+            .remove(
+                "result-visible"
+            );
+
+
+        /*
+            animation restart
+        */
+
+        void resultCard.offsetWidth;
+
+
+        resultCard
+            .classList
+            .add(
+                "result-visible"
+            );
+
+
+        /*
+            MOBILE + DESKTOP
+            AUTO SCROLL
+        */
+
+        setTimeout(
+            () => {
+
+                resultCard
+                    .scrollIntoView({
+
+                        behavior:
+                            "smooth",
+
+                        block:
+                            "start"
+
+                    });
+
+            },
+
+            180
+
+        );
+
+    }
+);
+
 
 
 /*

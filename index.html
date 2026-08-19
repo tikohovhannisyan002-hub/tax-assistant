@@ -15,37 +15,56 @@
     <div class="page">
 
         <header class="header">
+
             <div class="logo">
+
                 <div class="logo-icon">%</div>
 
                 <div>
-                    <div class="logo-title">Tax Assistant</div>
-                    <div class="logo-subtitle">Հաշվապահական օգնական</div>
+                    <div class="logo-title">
+                        Tax Assistant
+                    </div>
+
+                    <div class="logo-subtitle">
+                        Հաշվապահական օգնական
+                    </div>
                 </div>
+
             </div>
+
 
             <div class="law-badge">
                 ՀՀ Հարկային օրենսգիրք · Հոդված 258
             </div>
+
         </header>
 
 
         <main class="main">
 
-            <!-- LEFT SIDE -->
+            <!-- CALCULATOR -->
 
             <section class="calculator-card">
 
                 <div class="section-heading">
-                    <span class="step-number">1</span>
+
+                    <span class="step-number">
+                        1
+                    </span>
 
                     <div>
-                        <h1>Շրջանառության հարկի հաշվարկ</h1>
+
+                        <h1>
+                            Շրջանառության հարկի հաշվարկ
+                        </h1>
+
                         <p>
-                            Մուտքագրեք տվյալները, իսկ համակարգը ավտոմատ
-                            կհաշվարկի հարկի գումարը։
+                            Մուտքագրեք տվյալները և սեղմեք
+                            «Հաշվարկել հարկը»։
                         </p>
+
                     </div>
+
                 </div>
 
 
@@ -162,23 +181,34 @@
 
 
                 <button id="calculateBtn" class="calculate-btn">
+
                     Հաշվարկել հարկը
+
                 </button>
 
             </section>
 
 
-            <!-- RIGHT SIDE -->
+            <!-- RESULT -->
 
-            <section class="result-card">
+            <section class="result-card result-hidden" id="resultCard">
 
                 <div class="result-header">
 
-                    <span class="step-number dark">2</span>
+                    <span class="step-number dark">
+                        2
+                    </span>
 
                     <div>
-                        <h2>Հաշվարկի արդյունք</h2>
-                        <p>Արդյունքը ներկայացվում է դրամով</p>
+
+                        <h2>
+                            Հաշվարկի արդյունք
+                        </h2>
+
+                        <p>
+                            Արդյունքը ներկայացվում է դրամով
+                        </p>
+
                     </div>
 
                 </div>
@@ -191,8 +221,13 @@
                     </span>
 
                     <div class="main-result-value">
-                        <span id="finalTax">0</span>
+
+                        <span id="finalTax">
+                            0
+                        </span>
+
                         <small>֏</small>
+
                     </div>
 
                 </div>
@@ -202,7 +237,9 @@
 
                     <div class="result-row">
 
-                        <span>Հիմնական դրույքաչափ</span>
+                        <span>
+                            Հիմնական դրույքաչափ
+                        </span>
 
                         <strong id="baseRate">
                             10%
@@ -213,7 +250,9 @@
 
                     <div class="result-row">
 
-                        <span>Հաշվարկված հարկ</span>
+                        <span>
+                            Հաշվարկված հարկ
+                        </span>
 
                         <strong id="initialTax">
                             0 ֏
@@ -224,7 +263,9 @@
 
                     <div class="result-row expense-result">
 
-                        <span>Ընդհանուր նվազեցվող ծախսեր</span>
+                        <span>
+                            Ընդհանուր նվազեցվող ծախսեր
+                        </span>
 
                         <strong id="totalExpenses">
                             0 ֏
@@ -248,7 +289,9 @@
 
                     <div class="result-row expense-result">
 
-                        <span>Նվազագույն հարկ</span>
+                        <span>
+                            Նվազագույն հարկ
+                        </span>
 
                         <strong id="minimumTax">
                             0 ֏
@@ -259,7 +302,9 @@
 
                     <div class="result-row expense-result">
 
-                        <span>Օգտագործված ծախս</span>
+                        <span>
+                            Օգտագործված ծախս
+                        </span>
 
                         <strong id="usedExpenses">
                             0 ֏
@@ -290,7 +335,6 @@
                     </div>
 
                     <div id="formulaText" class="formula-text">
-                        Մուտքագրեք տվյալները և սեղմեք «Հաշվարկել հարկը»։
                     </div>
 
                 </div>
@@ -306,4 +350,4 @@
 
 </body>
 
-</html> 
+</html>
