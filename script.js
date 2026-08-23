@@ -1,80 +1,70 @@
 const taxRules = {
 
     trade: {
-        name:
-            "Առևտրական գործունեություն",
+        name: "Առևտրական գործունեություն",
         rate: 10,
         expenseRate: 9.5,
         minimumRate: 1
     },
 
     secondary: {
-        name:
-            "Երկրորդային հումքի առևտուր",
+        name: "Երկրորդային հումքի առևտուր",
         rate: 5,
         expenseRate: null,
         minimumRate: null
     },
 
     newspaper: {
-        name:
-            "Թերթերի օտարում",
+        name: "Թերթերի օտարում",
         rate: 1.5,
         expenseRate: null,
         minimumRate: null
     },
 
     production: {
-        name:
-            "Արտադրական գործունեություն",
+        name: "Արտադրական գործունեություն",
         rate: 7,
         expenseRate: 5,
         minimumRate: 3
     },
 
     rent: {
-        name:
-            "Վարձակալական վճար, տոկոս, ռոյալթի",
+        name: "Վարձակալական վճար, տոկոս, ռոյալթի",
         rate: 10,
         expenseRate: null,
         minimumRate: null
     },
 
     food: {
-        name:
-            "Հանրային սննդի ոլորտ",
+        name: "Հանրային սննդի ոլորտ",
         rate: 12,
         expenseRate: 9,
         minimumRate: 3.5
     },
 
     food_other: {
-        name:
-            "Հանրային սննդի հայտարարություն ներկայացրած անձի այլ գործունեություն",
+        name: "Հանրային սննդի հայտարարություն ներկայացրած անձի այլ գործունեություն",
         rate: 20,
         expenseRate: null,
         minimumRate: null
     },
 
     hightech: {
-        name:
-            "Բարձր տեխնոլոգիաների ոլորտ",
+        name: "Բարձր տեխնոլոգիաների ոլորտ",
         rate: 1,
         expenseRate: null,
         minimumRate: null
     },
 
     assets: {
-        name:
-            "Այլ ակտիվների օտարում",
+        name: "Այլ ակտիվների օտարում",
         rate: 10,
         expenseRate: null,
         minimumRate: null
     },
 
     other: {
-        name:
-            "Այլ գործունեություն",
+        name: "Այլ գործունեություն",
         rate: 10,
         expenseRate: 6,
         minimumRate: 4.5
@@ -85,95 +75,61 @@ const taxRules = {
 
 
 const activity =
-    document.getElementById(
-        "activity"
-    );
+    document.getElementById("activity");
 
 const income =
-    document.getElementById(
-        "income"
-    );
+    document.getElementById("income");
 
 const expenses =
-    document.getElementById(
-        "expenses"
-    );
+    document.getElementById("expenses");
 
 const previousExpenses =
-    document.getElementById(
-        "previousExpenses"
-    );
+    document.getElementById("previousExpenses");
 
 const calculateBtn =
-    document.getElementById(
-        "calculateBtn"
-    );
+    document.getElementById("calculateBtn");
 
 const resultCard =
-    document.getElementById(
-        "resultCard"
-    );
+    document.getElementById("resultCard");
 
 
 
 const finalTax =
-    document.getElementById(
-        "finalTax"
-    );
+    document.getElementById("finalTax");
 
 const baseRate =
-    document.getElementById(
-        "baseRate"
-    );
+    document.getElementById("baseRate");
 
 const initialTax =
-    document.getElementById(
-        "initialTax"
-    );
+    document.getElementById("initialTax");
 
 const totalExpenses =
-    document.getElementById(
-        "totalExpenses"
-    );
+    document.getElementById("totalExpenses");
 
 const expenseDeduction =
-    document.getElementById(
-        "expenseDeduction"
-    );
+    document.getElementById("expenseDeduction");
 
 const minimumTax =
-    document.getElementById(
-        "minimumTax"
-    );
+    document.getElementById("minimumTax");
 
 const usedExpenses =
-    document.getElementById(
-        "usedExpenses"
-    );
+    document.getElementById("usedExpenses");
 
 const carryForward =
-    document.getElementById(
-        "carryForward"
-    );
+    document.getElementById("carryForward");
 
 const formulaText =
-    document.getElementById(
-        "formulaText"
-    );
+    document.getElementById("formulaText");
 
 const activityInfo =
-    document.getElementById(
-        "activityInfo"
-    );
+    document.getElementById("activityInfo");
 
 
 
 function formatMoney(value) {
 
     return Math.round(value)
-        .toLocaleString(
-            "hy-AM"
-        );
+        .toLocaleString("hy-AM");
 
 }
 
@@ -182,9 +138,7 @@ function formatMoney(value) {
 function getNumber(element) {
 
     const value =
-        Number(
-            element.value
-        );
+        Number(element.value);
 
     if (
         isNaN(value) ||
@@ -215,9 +169,7 @@ function hasExpenseDeduction(rule) {
 function updateActivityInfo() {
 
     const rule =
-        taxRules[
-        activity.value
-        ];
+        taxRules[activity.value];
 
 
     const expenseFields =
@@ -240,9 +192,7 @@ function updateActivityInfo() {
 
                 element
                     .classList
-                    .remove(
-                        "hidden"
-                    );
+                    .remove("hidden");
 
             }
         );
@@ -253,9 +203,7 @@ function updateActivityInfo() {
 
                 element
                     .classList
-                    .remove(
-                        "hidden"
-                    );
+                    .remove("hidden");
 
             }
         );
@@ -288,9 +236,7 @@ function updateActivityInfo() {
 
                 element
                     .classList
-                    .add(
-                        "hidden"
-                    );
+                    .add("hidden");
 
             }
         );
@@ -301,9 +247,7 @@ function updateActivityInfo() {
 
                 element
                     .classList
-                    .add(
-                        "hidden"
-                    );
+                    .add("hidden");
 
             }
         );
@@ -335,24 +279,16 @@ function updateActivityInfo() {
 function calculateTax() {
 
     const rule =
-        taxRules[
-        activity.value
-        ];
+        taxRules[activity.value];
 
     const revenue =
-        getNumber(
-            income
-        );
+        getNumber(income);
 
     const currentExpenses =
-        getNumber(
-            expenses
-        );
+        getNumber(expenses);
 
-    const oldExpenses =
-        getNumber(
-            previousExpenses
-        );
+    const previousDeduction =
+        getNumber(previousExpenses);
 
 
     if (
@@ -363,6 +299,10 @@ function calculateTax() {
 
     }
 
+
+    /*
+        1. ՀԻՄՆԱԿԱՆ ՀԱՐԿ
+    */
 
     const taxBeforeDeduction =
         revenue *
@@ -383,8 +323,10 @@ function calculateTax() {
                 taxBeforeDeduction
             );
 
+
         baseRate.textContent =
             rule.rate + "%";
+
 
         initialTax.textContent =
             formatMoney(
@@ -408,9 +350,7 @@ function calculateTax() {
             =
 
             <strong>
-                ${formatMoney(
-            taxBeforeDeduction
-        )} ֏
+                ${formatMoney(taxBeforeDeduction)} ֏
             </strong>
 
         `;
@@ -423,28 +363,7 @@ function calculateTax() {
 
 
     /*
-        ԸՆԴՀԱՆՈՒՐ ԾԱԽՍ
-    */
-
-    const availableExpenses =
-        currentExpenses +
-        oldExpenses;
-
-
-
-    /*
-        ՀՆԱՐԱՎՈՐ ՆՎԱԶԵՑՈՒՄ
-    */
-
-    const possibleDeduction =
-        availableExpenses *
-        rule.expenseRate /
-        100;
-
-
-
-    /*
-        ՆՎԱԶԱԳՈՒՅՆ ՀԱՐԿ
+        2. ՆՎԱԶԱԳՈՒՅՆ ՀԱՐԿ
     */
 
     const minimumTaxAmount =
@@ -455,68 +374,115 @@ function calculateTax() {
 
 
     /*
-        ԱՌԱՎԵԼԱԳՈՒՅՆ
-        ԹՈՒՅԼԱՏՐԵԼԻ ՆՎԱԶԵՑՈՒՄ
+        3. ԸՆԹԱՑԻԿ ԺԱՄԱՆԱԿԱՇՐՋԱՆԻ
+           ԾԱԽՍԵՐԻ ՀՆԱՐԱՎՈՐ ՆՎԱԶԵՑՈՒՄ
     */
 
-    const maximumAllowedDeduction =
+    const currentPossibleDeduction =
+        currentExpenses *
+        rule.expenseRate /
+        100;
+
+
+
+    /*
+        4. ԸՆԹԱՑԻԿ ԾԱԽՍԵՐՈՎ
+           ԱՌԱՎԵԼԱԳՈՒՅՆ ԹՈՒՅԼԱՏՐԵԼԻ ՆՎԱԶԵՑՈՒՄ
+    */
+
+    const maximumCurrentDeduction =
         Math.max(
-
             0,
-
             taxBeforeDeduction -
             minimumTaxAmount
-
         );
 
 
 
     /*
-        ԻՐԱԿԱՆ ՆՎԱԶԵՑՈՒՄ
+        5. ԸՆԹԱՑԻԿ ԾԱԽՍԵՐԻ
+           ԻՐԱԿԱՆ ՆՎԱԶԵՑՈՒՄ
     */
 
-    const actualDeduction =
+    const currentActualDeduction =
         Math.min(
-
-            possibleDeduction,
-
-            maximumAllowedDeduction
-
+            currentPossibleDeduction,
+            maximumCurrentDeduction
         );
 
 
 
     /*
-        ՎԵՐՋՆԱԿԱՆ ՀԱՐԿ
+        6. ԸՆԹԱՑԻԿ ԾԱԽՍԵՐԻՑ ՀԵՏՈ
+           ԱՌԱՋԱՑԱԾ ՀԱՐԿ
+    */
+
+    const taxAfterCurrentExpenses =
+        Math.max(
+            minimumTaxAmount,
+            taxBeforeDeduction -
+            currentActualDeduction
+        );
+
+
+
+    /*
+        7. ՆԱԽՈՐԴ ԺԱՄԱՆԱԿԱՇՐՋԱՆԻՑ
+           ՓՈԽԱՆՑՎԱԾ ՉՆՎԱԶԵՑՎԱԾ ԳՈՒՄԱՐ
+    */
+
+    const maximumPreviousDeduction =
+        Math.max(
+            0,
+            taxAfterCurrentExpenses -
+            minimumTaxAmount
+        );
+
+
+
+    /*
+        Նախորդ ժամանակաշրջանի գումարի վրա
+        expenseRate այլևս ՉԻ կիրառվում։
+
+        Այն ուղղակի հաշվանցվում է
+        ստացված հարկի հետ։
+    */
+
+    const previousActualDeduction =
+        Math.min(
+            previousDeduction,
+            maximumPreviousDeduction
+        );
+
+
+
+    /*
+        8. ՎԵՐՋՆԱԿԱՆ ՀԱՐԿ
     */
 
     const taxAfterDeduction =
         Math.max(
-
             minimumTaxAmount,
-
-            taxBeforeDeduction -
-            actualDeduction
-
+            taxAfterCurrentExpenses -
+            previousActualDeduction
         );
 
 
 
     /*
-        ՕԳՏԱԳՈՐԾՎԱԾ ԾԱԽՍ
+        9. ԸՆԹԱՑԻԿ ԾԱԽՍԵՐԻՑ
+           ԻՐԱԿԱՆ ՕԳՏԱԳՈՐԾՎԱԾ ԳՈՒՄԱՐ
     */
 
-    let expensesActuallyUsed = 0;
+    let currentExpensesUsed = 0;
 
 
     if (
         rule.expenseRate > 0
     ) {
 
-        expensesActuallyUsed =
-
-            actualDeduction /
-
+        currentExpensesUsed =
+            currentActualDeduction /
             (
                 rule.expenseRate /
                 100
@@ -525,29 +491,38 @@ function calculateTax() {
     }
 
 
-    expensesActuallyUsed =
+    currentExpensesUsed =
         Math.min(
-
-            availableExpenses,
-
-            expensesActuallyUsed
-
+            currentExpenses,
+            currentExpensesUsed
         );
 
 
 
     /*
-        ՓՈԽԱՆՑՎՈՂ ԾԱԽՍ
+        10. ԸՆԹԱՑԻԿ ԺԱՄԱՆԱԿԱՇՐՋԱՆԻ
+            ՉՕԳՏԱԳՈՐԾՎԱԾ ԾԱԽՍ
     */
 
-    const remainingExpenses =
+    const remainingCurrentExpenses =
         Math.max(
-
             0,
+            currentExpenses -
+            currentExpensesUsed
+        );
 
-            availableExpenses -
-            expensesActuallyUsed
 
+
+    /*
+        11. ՆԱԽՈՐԴ ԺԱՄԱՆԱԿԱՇՐՋԱՆԻՑ
+            ՉՕԳՏԱԳՈՐԾՎԱԾ ՄՆԱՑՈՐԴ
+    */
+
+    const remainingPreviousDeduction =
+        Math.max(
+            0,
+            previousDeduction -
+            previousActualDeduction
         );
 
 
@@ -569,7 +544,7 @@ function calculateTax() {
 
     totalExpenses.textContent =
         formatMoney(
-            availableExpenses
+            currentExpenses
         ) +
         " ֏";
 
@@ -577,7 +552,7 @@ function calculateTax() {
     expenseDeduction.textContent =
         "- " +
         formatMoney(
-            actualDeduction
+            currentActualDeduction
         ) +
         " ֏";
 
@@ -591,14 +566,14 @@ function calculateTax() {
 
     usedExpenses.textContent =
         formatMoney(
-            expensesActuallyUsed
+            currentExpensesUsed
         ) +
         " ֏";
 
 
     carryForward.textContent =
         formatMoney(
-            remainingExpenses
+            remainingPreviousDeduction
         ) +
         " ֏";
 
@@ -628,115 +603,135 @@ function calculateTax() {
 
         =
 
-        ${formatMoney(
-        taxBeforeDeduction
-    )} ֏
+        ${formatMoney(taxBeforeDeduction)} ֏
 
 
         <br><br>
 
 
         <strong>
-            2․ Ծախսերով հնարավոր նվազեցում
+            2․ Ընթացիկ ժամանակաշրջանի ծախսերի նվազեցում
         </strong>
 
         <br>
 
-        ${formatMoney(
-        availableExpenses
-    )} ֏
-
+        ${formatMoney(currentExpenses)} ֏
         ×
-
         ${rule.expenseRate}%
 
         =
 
-        ${formatMoney(
-        possibleDeduction
-    )} ֏
+        ${formatMoney(currentPossibleDeduction)} ֏
 
 
         <br><br>
 
 
         <strong>
-            3․ Նվազագույն հարկ
+            3․ Ընթացիկ ծախսերից կիրառված նվազեցում
+        </strong>
+
+        <br>
+
+        ${formatMoney(currentActualDeduction)} ֏
+
+
+        <br><br>
+
+
+        <strong>
+            4․ Ընթացիկ ծախսերից հետո հարկ
+        </strong>
+
+        <br>
+
+        ${formatMoney(taxBeforeDeduction)} ֏
+        −
+        ${formatMoney(currentActualDeduction)} ֏
+
+        =
+
+        <strong>
+            ${formatMoney(taxAfterCurrentExpenses)} ֏
+        </strong>
+
+
+        <br><br>
+
+
+        <strong>
+            5․ Նախորդ ժամանակաշրջանից փոխանցված գումարի հաշվանցում
+        </strong>
+
+        <br>
+
+        ${formatMoney(taxAfterCurrentExpenses)} ֏
+        −
+        ${formatMoney(previousActualDeduction)} ֏
+
+        =
+
+        <strong>
+            ${formatMoney(taxAfterDeduction)} ֏
+        </strong>
+
+
+        <br><br>
+
+
+        <strong>
+            Նվազագույն հարկ
         </strong>
 
         <br>
 
         ${formatMoney(revenue)} ֏
-
         ×
-
         ${rule.minimumRate}%
 
         =
 
-        ${formatMoney(
-        minimumTaxAmount
-    )} ֏
-
-
-        <br><br>
-
-
-        <strong>
-            4․ Վերջնական հաշվարկ
-        </strong>
-
-        <br>
-
-        ${formatMoney(
-        taxBeforeDeduction
-    )} ֏
-
-        −
-
-        ${formatMoney(
-        actualDeduction
-    )} ֏
-
-        =
-
-        <strong>
-            ${formatMoney(
-        taxAfterDeduction
-    )} ֏
-        </strong>
+        ${formatMoney(minimumTaxAmount)} ֏
 
     `;
 
 
 
     if (
-        possibleDeduction >
-        maximumAllowedDeduction
+        remainingCurrentExpenses > 0
     ) {
 
         explanation += `
 
             <br><br>
 
-            Ծախսերի ամբողջ նվազեցումը
-            չի կիրառվել, քանի որ հարկը
-            չի կարող լինել շրջանառության
+            Ընթացիկ ժամանակաշրջանից
+            չօգտագործված ծախս՝
 
             <strong>
-                ${rule.minimumRate}%
-            </strong>
+                ${formatMoney(remainingCurrentExpenses)} ֏
+            </strong>։
 
-            -ից պակաս։
+        `;
+
+    }
+
+
+
+    if (
+        remainingPreviousDeduction > 0
+    ) {
+
+        explanation += `
 
             <br><br>
 
-            Չօգտագործված ծախս՝
+            Նախորդ ժամանակաշրջանից
+            չօգտագործված և հետագա շրջան
+            փոխանցվող գումար՝
 
             <strong>
-                ${formatMoney(
-            remainingExpenses
-        )} ֏
+                ${formatMoney(remainingPreviousDeduction)} ֏
             </strong>։
 
         `;
@@ -764,11 +759,6 @@ activity.addEventListener(
 
         updateActivityInfo();
 
-        /*
-            Եթե արդեն արդյունք է եղել,
-            թաքցնում ենք մինչև նորից
-            սեղմեն հաշվարկի կոճակը։
-        */
 
         resultCard
             .classList
@@ -854,6 +844,7 @@ calculateBtn.addEventListener(
         }
 
 
+
         /*
             ՑՈՒՅՑ ՏԱԼ ԱՐԴՅՈՒՆՔԸ
         */
@@ -872,8 +863,9 @@ calculateBtn.addEventListener(
             );
 
 
+
         /*
-            animation restart
+            ANIMATION RESTART
         */
 
         void resultCard.offsetWidth;
@@ -884,6 +876,7 @@ calculateBtn.addEventListener(
             .add(
                 "result-visible"
             );
+
 
 
         /*
@@ -897,11 +890,8 @@ calculateBtn.addEventListener(
                 resultCard
                     .scrollIntoView({
 
-                        behavior:
-                            "smooth",
-
-                        block:
-                            "start"
+                        behavior: "smooth",
+                        block: "start"
 
                     });
 
